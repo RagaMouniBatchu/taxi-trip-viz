@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Taxi Trip Visualization</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive Taxi Trip Visualization</h1>
+            <p>Explore taxi trip patterns with interactive maps and charts</p>
+        </header>
+        
+        <div class="controls">
+            <button id="resetBtn" class="reset-btn">Reset All Views</button>
+            <div class="stats">
+                <span id="totalTrips">Total Trips: Loading...</span>
+                <span id="selectedTrips">Selected: 0</span>
+            </div>
+        </div>
+        
+        <div class="visualization-grid">
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2>Trip Routes Map</h2>
+                <div id="map"></div>
+                <div id="tripInfo" class="trip-info-panel" style="display: none;">
+                    <h3>Selected Trip Information</h3>
+                    <div id="tripInfoContent"></div>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <h2>Trips by Hour</h2>
+                    <div id="barChart"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>Speed vs Distance</h2>
+                    <div id="scatterPlot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="map.js"></script>
+    <script src="charts.js"></script>
+    <script src="interactivity.js"></script>
+</body>
+</html> 

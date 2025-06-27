@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.reset-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+}
+
+.stats span {
+    padding: 8px 15px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    border: 2px solid #e9ecef;
+}
+
+.visualization-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.map-section {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.map-section h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+#map {
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.charts-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    flex: 1;
+}
+
+.chart-container h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+#barChart, #scatterPlot {
+    height: 240px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* D3 Chart Styling */
+.bar {
+    transition: all 0.3s ease;
+    stroke-width: 0;
+}
+
+.bar:hover {
+    stroke: #2c3e50;
+    stroke-width: 1;
+}
+
+.bar.selected {
+    stroke: #e74c3c;
+    stroke-width: 2;
+}
+
+.bar.clicked {
+    stroke: #2c3e50 !important;
+    stroke-width: 2 !important;
+}
+
+.bar.clicked:hover {
+    stroke: #2c3e50 !important;
+    stroke-width: 2 !important;
+}
+
+.axis path,
+.axis line {
+    stroke: #bdc3c7;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: #7f8c8d;
+}
+
+.axis-label {
+    font-size: 14px;
+    font-weight: bold;
+    fill: #2c3e50;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.dot {
+    /* Remove fixed fill and stroke to allow dynamic colors */
+    stroke-width: 1;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    fill: #e74c3c !important;
+    stroke: #c0392b !important;
+    stroke-width: 2 !important;
+}
+
+.dot.selected {
+    fill: #e74c3c !important;
+    stroke: #c0392b !important;
+    stroke-width: 3 !important;
+}
+
+.dot.clicked {
+    fill: #f39c12 !important;
+    stroke: #e67e22 !important;
+    stroke-width: 3 !important;
+}
+
+.dot.clicked:hover {
+    fill: #f39c12 !important;
+    stroke: #e67e22 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .visualization-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .charts-section {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .charts-section {
+        flex-direction: column;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Trip GPS Markers */
+.trip-marker {
+    background: transparent;
+    border: none;
+}
+
+.marker-icon {
+    font-size: 18px;
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}
+
+.marker-popup {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.marker-popup h4 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.marker-popup p {
+    margin: 5px 0;
+    font-size: 12px;
+    color: #34495e;
+}
+
+.marker-popup strong {
+    color: #2c3e50;
+}
+
+/* Trip Information Panel */
+.trip-info-panel {
+    margin-top: 15px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.trip-info-panel h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.trip-info-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.trip-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.trip-info-item:last-child {
+    border-bottom: none;
+}
+
+.trip-info-label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.trip-info-value {
+    color: #34495e;
+}
+
+@media (max-width: 768px) {
+    .trip-info-content {
+        grid-template-columns: 1fr;
+    }
+} 
