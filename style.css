@@ -34,6 +34,74 @@ header p {
     opacity: 0.9;
 }
 
+/* How to Use Section */
+.how-to-use {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.how-to-toggle {
+    width: 100%;
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.how-to-toggle:hover {
+    background: linear-gradient(45deg, #2980b9, #1f618d);
+    transform: translateY(-1px);
+}
+
+.how-to-content {
+    display: none;
+    padding: 20px;
+}
+
+.usage-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.step {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.step strong {
+    color: #2c3e50;
+}
+
+.tip {
+    padding: 12px 15px;
+    background: linear-gradient(45deg, #fff3cd, #ffeaa7);
+    border-radius: 8px;
+    border-left: 4px solid #f39c12;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+.tip strong {
+    color: #d68910;
+}
+
 .controls {
     display: flex;
     justify-content: space-between;
@@ -270,6 +338,21 @@ header p {
 
 .marker-popup strong {
     color: #2c3e50;
+}
+
+/* Trip Hover Tooltip Styling */
+.trip-hover-tooltip {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid #3498db !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    padding: 8px 12px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    max-width: 250px !important;
+}
+
+.trip-hover-tooltip::before {
+    border-top-color: #3498db !important;
 }
 
 /* Trip Information Panel */

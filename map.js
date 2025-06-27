@@ -124,6 +124,42 @@ function drawTrips(trips) {
             
             polyline.bindPopup(popupContent);
             
+            // Add hover events to display trip information as map tooltip
+            polyline.on('mouseover', (e) => {
+                // Create trip information tooltip content
+                const tooltipContent = `
+                    <div style="font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.4;">
+                        <strong style="color: #2c3e50; font-size: 13px;">Trip ID: ${properties.tripid}</strong><br>
+                        <strong>Taxi ID:</strong> ${properties.taxiid}<br>
+                        <strong>Distance:</strong> ${(properties.distance / 1000).toFixed(2)} km<br>
+                        <strong>Duration:</strong> ${(properties.duration / 60).toFixed(1)} min<br>
+                        <strong>Avg Speed:</strong> ${properties.avspeed.toFixed(1)} km/h<br>
+                        <strong>Start:</strong> ${new Date(properties.starttime).toLocaleTimeString()}<br>
+                        <strong>End:</strong> ${new Date(properties.endtime).toLocaleTimeString()}
+                    </div>
+                `;
+                
+                // Show tooltip at mouse position
+                polyline.bindTooltip(tooltipContent, {
+                    permanent: false,
+                    direction: 'top',
+                    offset: [0, -10],
+                    className: 'trip-hover-tooltip'
+                }).openTooltip(e.latlng);
+                
+                // Highlight this trip on the map
+                highlightTrip(trip);
+            });
+            
+            polyline.on('mouseout', () => {
+                // Close and unbind the tooltip
+                polyline.closeTooltip();
+                polyline.unbindTooltip();
+                
+                // Reset trip styles
+                resetTripStyles();
+            });
+            
             // Add click event for interactivity
             polyline.on('click', () => {
                 selectTrip(index, trip);

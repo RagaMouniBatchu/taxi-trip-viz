@@ -194,10 +194,61 @@ window.interactivityFunctions = {
     eventDispatcher
 };
 
+// Toggle How to Use section
+function toggleHowTo() {
+    console.log('toggleHowTo called');
+    const content = document.getElementById('howToContent');
+    const arrow = document.getElementById('howToArrow');
+    
+    if (!content || !arrow) {
+        console.error('Elements not found:', { content, arrow });
+        return;
+    }
+    
+    // Simple display toggle without complex transitions
+    if (content.style.display === 'none' || content.style.display === '') {
+        // Show content
+        console.log('Showing content');
+        content.style.display = 'block';
+        arrow.textContent = '▲';
+    } else {
+        // Hide content
+        console.log('Hiding content');
+        content.style.display = 'none';
+        arrow.textContent = '▼';
+    }
+}
+
+// Make toggleHowTo globally available
+window.toggleHowTo = toggleHowTo;
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Wait a bit for other modules to load
     setTimeout(initInteractivity, 100);
+    
+    // Test if toggle function is accessible
+    console.log('toggleHowTo function available:', typeof window.toggleHowTo);
+    
+    // Test if elements exist and add event listener as backup
+    setTimeout(() => {
+        const content = document.getElementById('howToContent');
+        const arrow = document.getElementById('howToArrow');
+        const button = document.querySelector('.how-to-toggle');
+        console.log('Elements found:', { 
+            content: !!content, 
+            arrow: !!arrow, 
+            button: !!button 
+        });
+        
+        // Add event listener as backup to onclick
+        if (button) {
+            button.addEventListener('click', function() {
+                console.log('Button clicked via event listener');
+                toggleHowTo();
+            });
+        }
+    }, 200);
 });
 
 // Add some utility functions for debugging

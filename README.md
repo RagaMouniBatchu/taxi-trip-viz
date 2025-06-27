@@ -2,6 +2,16 @@
 
 A comprehensive web-based visualization of taxi trip data featuring interactive maps, charts, and cross-chart filtering capabilities with advanced pattern-based visual feedback and detailed trip information display.
 
+## 🎮 How to Use (Quick Start)
+
+1. **Click any bar** in the bar chart → Filters map and scatter plot to that hour
+2. **Hover over scatter plot points** → Highlights corresponding trip on map
+3. **Click scatter plot points** → Shows detailed trip info panel + GPS markers
+4. **Hover over map routes** → See trip details in floating tooltip
+5. **Click "Reset All Views"** → Clear all filters and selections
+
+**💡 Pro Tips:** Use patterns (diagonal stripes) to see selection states while preserving original colors. GPS markers show trip start (🟢) and end (🔴) points.
+
 ## ✨ Key Features
 
 ### 🗺️ Interactive Map

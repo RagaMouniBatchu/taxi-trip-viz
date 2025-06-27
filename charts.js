@@ -691,5 +691,7 @@ window.addEventListener('resize', () => {
 window.chartFunctions = {
     updateChartsForSelection,
     updateChartsForFilter,
-    resetCharts
+    resetCharts,
+    displayTripInfo,
+    hideTripInfo
 }; 
